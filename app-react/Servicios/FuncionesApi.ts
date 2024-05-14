@@ -7,7 +7,7 @@ export function getAllInstrumentos(){
 }
 
 export function getOneInstrumento(id:number){
-    return fetch(`http://localhost:3000/Instrumentos/${id}`)
+    return fetch(`http://localhost:8080/api/v1/Instrumentos/${id}`)
             .then(res=>res.json())
             .then(json=>json)
 }
