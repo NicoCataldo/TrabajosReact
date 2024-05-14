@@ -25,36 +25,34 @@ export const DetalleInstrumento = () => {
   return (
     <>
       <NavBar />
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="card mb-3">
-            <div className="row g-0">
-              <div className="col-md-4">
-                <img
-                  src={`../imagenes/${Instru?.imagen}`}
-                  className="img-fluid rounded-start"
-                  alt="..."
-                ></img>
-              </div>
-              <div className="col-md-8">
-                <div className="card-body">
-                  <h5 className="card-title">{Instru?.instrumento}</h5>
-                  <h6 className="card-title">${Instru?.precio}</h6>
-                  <p className="card-text">
-                    <b>Descripcion: </b>
-                    {Instru?.descripcion}
-                  </p>
-                  <p className="card-text">
-                    <small className="text-body-secondary">{text}</small>
-                  </p>
-                  <p className="card-text">
-                    <small className="text-body-secondary">
-                      {Instru?.cantidadVendida} vendidos
-                    </small>
-                  </p>
-                  <a className="btn btn-primary">Agregar al carrito</a>
-                </div>
-              </div>
+      <div className="card mb-3" style={{ width: "800px", marginTop: "10px" }}>
+        <div className="row g-0">
+          <div className="col-md-4">
+            <img
+              src={`../imagenes/${Instru?.imagen}`}
+              className="img-fluid rounded-start"
+              alt="..."
+            ></img>
+          </div>
+          <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title">{Instru?.instrumento}</h5>
+              <h5 className="card-text">${Instru?.precio}</h5>
+              <p className="card-text">
+                <b>Descripcion: </b>
+                {Instru?.descripcion}
+              </p>
+              <p className="card-text">
+                <small className="text-body-secondary">{text}</small>
+              </p>
+              <p className="card-text">
+                <small className="text-body-secondary">
+                  {Instru?.cantidadVendida} vendidos
+                </small>
+              </p>
+              <a href="" className="btn btn-primary">
+                Agregar al carrito
+              </a>
             </div>
           </div>
         </div>

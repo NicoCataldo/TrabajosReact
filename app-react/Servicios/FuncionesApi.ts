@@ -1,7 +1,7 @@
 import Instrumento from "../Entidades/Instrumento";
 
 export function getAllInstrumentos(){
-    return fetch(`http://localhost:3000/Instrumentos`)
+    return fetch(`http://localhost:8080/api/v1/Instrumentos`)
             .then(res=>res.json())
             .then(json=>json)
 }
