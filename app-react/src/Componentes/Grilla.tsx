@@ -1,11 +1,17 @@
 import { SetStateAction, useEffect, useState } from "react";
 import Instrumento from "../../Entidades/Instrumento";
-import { getAllInstrumentos } from "../../Servicios/FuncionesApi";
+import {
+  deleteInstrumento,
+  getAllCategorias,
+  getAllInstrumentos,
+} from "../../Servicios/FuncionesApi";
 import { NavBar } from "./NavBar";
 import "./styles.css";
+import Categorias from "../../Entidades/Categorias";
 
 export const Grilla = () => {
   const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);
+  const [categorias, setCategorias] = useState<Categorias[]>([]);
   {
     /*Nota: Primero correr Json server con npm run server*/
   }
@@ -13,10 +19,19 @@ export const Grilla = () => {
     const datos: Instrumento[] = await getAllInstrumentos();
     setInstrumentos(datos);
   };
-  const deletePlato = async (idInstru: string) => {};
+
+  const getCategorias = async () => {
+    const datos: Categorias[] = await getAllCategorias();
+    setCategorias(datos);
+  };
+  const deleteInstru = async (idInstru: number) => {
+    deleteInstrumento(idInstru);
+    window.location.reload();
+  };
 
   useEffect(() => {
     getInstrumentos();
+    getCategorias();
   }, []);
 
   const [categoriaFiltro, setCategoriaFiltro] = useState("");
@@ -29,7 +44,7 @@ export const Grilla = () => {
 
   const filteredInstrumentos = categoriaFiltro
     ? instrumentos.filter(
-        (instrumento) => instrumento.marca === categoriaFiltro
+        (instrumento) => instrumento.categoria.denominacion === categoriaFiltro
       )
     : instrumentos;
 
@@ -46,10 +61,10 @@ export const Grilla = () => {
           <option value="">Todas las categorías</option>
           {/* Aquí deberías generar opciones para cada categoría única de tus instrumentos */}
           {Array.from(
-            new Set(instrumentos.map((instrumento) => instrumento.marca))
-          ).map((marca) => (
-            <option key={marca} value={marca}>
-              {marca}
+            new Set(categorias.map((categoria) => categoria.denominacion))
+          ).map((denominacion) => (
+            <option key={denominacion} value={denominacion}>
+              {denominacion}
             </option>
           ))}
         </select>
@@ -67,6 +82,9 @@ export const Grilla = () => {
           </div>
           <div className="col">
             <b>Modelo</b>
+          </div>
+          <div className="col">
+            <b>Categoría</b>
           </div>
           <div className="col">
             <b>Precio</b>
@@ -87,6 +105,7 @@ export const Grilla = () => {
             <div className="col">{intru.instrumento}</div>
             <div className="col">{intru.marca}</div>
             <div className="col">{intru.modelo}</div>
+            <div className="col">{intru.categoria.denominacion}</div>
             <div className="col">{intru.precio}</div>
             <div className="col">{intru.costoEnvio}</div>
             <div className="col">
@@ -102,7 +121,7 @@ export const Grilla = () => {
               <a
                 className="btn btn-danger"
                 style={{ marginBottom: 10 }}
-                onClick={(e) => deletePlato(intru.id)}
+                onClick={() => deleteInstru(intru.id)}
               >
                 Eliminar
               </a>

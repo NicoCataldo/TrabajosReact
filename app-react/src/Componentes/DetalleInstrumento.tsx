@@ -29,7 +29,7 @@ export const DetalleInstrumento = () => {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src={`../imagenes/${Instru?.imagen}`}
+              src={Instru?.imagen}
               className="img-fluid rounded-start"
               alt="..."
             ></img>

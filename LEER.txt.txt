@@ -1,6 +1,3 @@
 Para poder observas los items con normalidad:
-1° Ejecutar npm run server para correr el json server con los items
+1° Ejecutar la bd "BackReact" en intellij
 2° Ejecutar npm rnn dev para correr React
-
-Al ingresar al detalle del instrumento y seleccionar "Home", "Donde estamos" o "Productos" el programa se rompe
-por lo tanto conviene volver atras

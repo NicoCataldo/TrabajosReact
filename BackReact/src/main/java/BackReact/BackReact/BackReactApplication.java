@@ -121,7 +121,7 @@ public class BackReactApplication {
 					.precio(17000f)
 					.costoEnvio("2000")
 					.cantidadVendida(0)
-					.categoria(categoria1)
+					.categoria(categoria4)
 					.descripcion("Buen dia! Sale a la venta este Piano Alemán Neumeyer con candelabros incluidos. Tiene una talla muy bonita en la madera. Una pieza de calidad.")
 					.build();
 

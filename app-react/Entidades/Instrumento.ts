@@ -1,12 +1,15 @@
+import Categorias from "./Categorias";
 export default class Instrumento{
 
-    id:string = "";
+    id:number=0;
     instrumento:string = "";
     marca:string = "";
     modelo:string = "";
     imagen:string = "";
-    precio:string = "";
+    precio:number= 0;
     costoEnvio: string ="";
     cantidadVendida: string ="";
     descripcion: string ="";
+    categoria = new Categorias ();
+
 }

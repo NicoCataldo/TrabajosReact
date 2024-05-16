@@ -12,6 +12,42 @@ export function getOneInstrumento(id:number){
             .then(json=>json)
 }
 
+export function getAllCategorias(){
+    return fetch(`http://localhost:8080/api/v1/Categorias`)
+            .then(res=>res.json())
+            .then(json=>json)
+}
+
+export function deleteInstrumento(id:number) {
+    return fetch(`http://localhost:8080/api/v1/Instrumentos/${id}`, {
+        method: 'DELETE'
+    })
+}
+
+export function saveInstrumento(instrumento: Instrumento) {
+    return fetch('http://localhost:8080/api/v1/Instrumentos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(instrumento)
+    })
+}
+
+export function updateInstrumento(id: number, instrumento: any) {
+    return fetch(`http://localhost:8080/api/v1/Instrumentos/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(instrumento)
+    })
+}
+
+
+
+
+{/*
 export function getInstrumentosJson(){
     let datos:Instrumento[] = [{
         "id":"1",
@@ -124,5 +160,8 @@ export function getInstrumentosJson(){
         "descripcion": "DESCRIPCIÓN: DE 1 A 3 AÑOS. EL SET INCLUYE 5 TAMBORES, PALILLOS Y EL PLATILLO TAL CUAL LAS FOTOS. SONIDOS REALISTAS Y FÁCIL DE MONTAR. MEDIDAS: 40X20X46 CM"
     }
 ];
+
+
 return datos
 }
+*/}
