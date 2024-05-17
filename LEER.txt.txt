@@ -1,3 +1,3 @@
 Para poder observas los items con normalidad:
-1° Ejecutar la bd "BackReact" en intellij
+1° Ejecutar la bd "TP1LAB" en intellij el cual guardará los datos en una tabla mysql 
 2° Ejecutar npm rnn dev para correr React

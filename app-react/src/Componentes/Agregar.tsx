@@ -178,15 +178,17 @@ export const Agregar = () => {
           <select
             className="form-select"
             aria-label="Default select example"
-            onChange={(e) =>
-              (TipoCat = e.target.value) => {
-                categorias.map((cat: Categorias) => {
-                  if (cat.denominacion === TipoCat) {
-                    instru.categoria = cat;
-                  }
-                });
-                console.log(instru.categoria.denominacion);
-              }}
+            onChange={(e) => {
+              TipoCat = e.target.value;
+
+              categorias.forEach((cat: Categorias) => {
+                if (cat.denominacion === TipoCat) {
+                  instru.categoria = cat;
+                }
+              });
+
+              console.log(instru.categoria.denominacion); // Log después de la iteración
+            }}
           >
             {Number(idinstrumento) !== 0 ? (
               <option value="">{instru?.categoria.denominacion}</option>

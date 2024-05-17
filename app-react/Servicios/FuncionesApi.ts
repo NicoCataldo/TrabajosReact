@@ -1,29 +1,30 @@
 import Instrumento from "../Entidades/Instrumento";
 
 export function getAllInstrumentos(){
-    return fetch(`http://localhost:8080/api/v1/Instrumentos`)
+    return fetch(`http://localhost:9000/api/v1/Instrumentos`)
             .then(res=>res.json())
             .then(json=>json)
 }
 
 export function getOneInstrumento(id:number){
-    return fetch(`http://localhost:8080/api/v1/Instrumentos/${id}`)
+    return fetch(`http://localhost:9000/api/v1/Instrumentos/${id}`)
             .then(res=>res.json())
             .then(json=>json)
 }
 
 export function getAllCategorias(){
-    return fetch(`http://localhost:8080/api/v1/Categorias`)
+    return fetch(`http://localhost:9000/api/v1/Categorias`)
             .then(res=>res.json())
             .then(json=>json)
 }
 
 export function deleteInstrumento(id:number) {
-    return fetch(`http://localhost:8080/api/v1/Instrumentos/${id}`, {
+    return fetch(`http://localhost:9000/api/v1/Instrumentos/${id}`, {
         method: 'DELETE'
     })
 }
 
+{/*
 export function saveInstrumento(instrumento: Instrumento) {
     return fetch('http://localhost:8080/api/v1/Instrumentos', {
         method: 'POST',
@@ -33,9 +34,9 @@ export function saveInstrumento(instrumento: Instrumento) {
         body: JSON.stringify(instrumento)
     })
 }
-
+*/}
 export function updateInstrumento(id: number, instrumento: any) {
-    return fetch(`http://localhost:8080/api/v1/Instrumentos/${id}`, {
+    return fetch(`http://localhost:9000/api/v1/Instrumentos/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -43,6 +44,20 @@ export function updateInstrumento(id: number, instrumento: any) {
         body: JSON.stringify(instrumento)
     })
 }
+
+
+
+export async function saveInstrumento(data: Instrumento): Promise<Instrumento> {
+    const response = await fetch( "http://localhost:9000/api/v1/Instrumentos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const newData = await response.json();
+    return newData as Instrumento;
+  }
 
 
 
