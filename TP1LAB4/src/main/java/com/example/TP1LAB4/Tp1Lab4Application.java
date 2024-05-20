@@ -24,7 +24,7 @@ public class Tp1Lab4Application {
 	CommandLineRunner init(InstrumentoRepository instrumentoRepository, CategoriasRepository categoriasRepository) {
 		return args -> {
 			System.out.println("-----------------ESTOY FUNCIONANDO---------");
-			
+			{/*
 			Categorias categoria1 = Categorias.builder()
 					.denominacion("Cuerda")
 					.build();
@@ -179,7 +179,7 @@ public class Tp1Lab4Application {
 					.build();
 			instrumentoRepository.save(instrumento10);
 
-
+			*/}
 
 
 

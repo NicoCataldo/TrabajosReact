@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 public class InstrumentoServiceImpl extends BaseServiceImpl<Instrumento,Long> implements InstrumentoService {
     @Autowired
-    private InstrumentoRepository empresaRepository;
+    private InstrumentoRepository InstrumentoRepository;
 
-    public InstrumentoServiceImpl(BaseRepository<Instrumento, Long> baseRepository, InstrumentoRepository empresaRepository) {
+    public InstrumentoServiceImpl(BaseRepository<Instrumento, Long> baseRepository, com.example.TP1LAB4.Repositories.InstrumentoRepository instrumentoRepository) {
         super(baseRepository);
-        this.empresaRepository = empresaRepository;
+        InstrumentoRepository = instrumentoRepository;
     }
 
     @Override
