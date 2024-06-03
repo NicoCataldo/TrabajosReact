@@ -1,3 +1,8 @@
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { useCarrito } from "../../hooks/useCarrito.tsx";
+import Instrumento from "../../../Entidades/Instrumento.ts";
+
 type InstrumentoParams = {
   id: number;
   instrumento: string;
@@ -8,6 +13,7 @@ type InstrumentoParams = {
   costoEnvio: string;
   cantidadVendida: string;
   descripcion: string;
+  InstrumentoObject: Instrumento;
 };
 
 function ItemInstrumento(args: InstrumentoParams) {
@@ -16,6 +22,14 @@ function ItemInstrumento(args: InstrumentoParams) {
       ? "Envio gratis a todo el pais"
       : `Costo de envio al interior de Argentina $${args.costoEnvio}`;
 
+  const { cart, removeCarrito, addCarrito, limpiarCarrito, removeItemCarrito } =
+    useCarrito();
+
+  const verificaPlatoEnCarrito = (product: Instrumento) => {
+    return cart.some((item) => item.id === product.id);
+  };
+
+  const isPlatoInCarrito = verificaPlatoEnCarrito(args.InstrumentoObject);
   return (
     <>
       <div className="card mb-3" style={{ width: "600px", marginTop: "60px" }}>
@@ -39,8 +53,26 @@ function ItemInstrumento(args: InstrumentoParams) {
                   {args.cantidadVendida} vendidos
                 </small>
               </p>
-              <a href={`Detalle/${args.id}`} className="btn btn-primary">
+              <a
+                href={`Detalle/${args.id}`}
+                className="btn btn-primary"
+                style={{ marginRight: "10px" }}
+              >
                 Ver Detalle
+              </a>
+              <a
+                className="btn btn-primary"
+                onClick={() => {
+                  isPlatoInCarrito
+                    ? removeCarrito(args.InstrumentoObject)
+                    : addCarrito(args.InstrumentoObject);
+                }}
+              >
+                {isPlatoInCarrito ? (
+                  <i className="fas fa-cart-arrow-down"></i>
+                ) : (
+                  <i className="fas fa-shopping-cart"></i>
+                )}
               </a>
             </div>
           </div>

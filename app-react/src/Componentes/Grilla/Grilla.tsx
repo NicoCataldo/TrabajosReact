@@ -1,13 +1,13 @@
 import { SetStateAction, useEffect, useState } from "react";
-import Instrumento from "../../Entidades/Instrumento";
+import Instrumento from "../../../Entidades/Instrumento";
 import {
   deleteInstrumento,
   getAllCategorias,
   getAllInstrumentos,
-} from "../../Servicios/FuncionesApi";
-import { NavBar } from "./NavBar";
-import "./styles.css";
-import Categorias from "../../Entidades/Categorias";
+} from "../../../Servicios/FuncionesApi";
+import { NavBar } from "../Commons/NavBar";
+import "../styles.css";
+import Categorias from "../../../Entidades/Categorias";
 
 export const Grilla = () => {
   const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);

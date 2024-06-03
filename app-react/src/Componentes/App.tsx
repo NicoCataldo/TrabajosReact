@@ -1,10 +1,8 @@
-import { NavBar } from "./NavBar";
-import { Tarjetas } from "./Tarjetas";
+import { Tarjetas } from "./Productos/Tarjetas";
 
 function App() {
   return (
     <>
-      <NavBar />
       <Tarjetas />
     </>
   );

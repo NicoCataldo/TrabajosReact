@@ -1,4 +1,6 @@
 import Instrumento from "../Entidades/Instrumento";
+import DetallePedido from "../Entidades/DetallePedido";
+import Pedido from "../Entidades/Pedido";
 
 export function getAllInstrumentos(){
     return fetch(`http://localhost:9000/api/v1/Instrumentos`)
@@ -24,17 +26,6 @@ export function deleteInstrumento(id:number) {
     })
 }
 
-{/*
-export function saveInstrumento(instrumento: Instrumento) {
-    return fetch('http://localhost:8080/api/v1/Instrumentos', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(instrumento)
-    })
-}
-*/}
 export function updateInstrumento(id: number, instrumento: any) {
     return fetch(`http://localhost:9000/api/v1/Instrumentos/${id}`, {
         method: 'PUT',
@@ -57,12 +48,36 @@ export async function saveInstrumento(data: Instrumento): Promise<Instrumento> {
     });
     const newData = await response.json();
     return newData as Instrumento;
-  }
+}
+
+export async function saveDetallePedido(data: DetallePedido): Promise<DetallePedido> {
+    const response = await fetch( "http://localhost:9000/api/v1/DetallePedido", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const newData = await response.json();
+    return newData as DetallePedido;
+}
+
+export async function savePedido(data: Pedido): Promise<Pedido> {
+    const response = await fetch( "http://localhost:9000/api/v1/Pedido", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const newData = await response.json();
+    return newData as Pedido;
+}
 
 
 
 
-{/*
+/*
 export function getInstrumentosJson(){
     let datos:Instrumento[] = [{
         "id":"1",
@@ -179,4 +194,4 @@ export function getInstrumentosJson(){
 
 return datos
 }
-*/}
+*/

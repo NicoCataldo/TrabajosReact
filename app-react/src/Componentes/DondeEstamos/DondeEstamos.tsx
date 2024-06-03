@@ -1,9 +1,8 @@
-import { NavBar } from "./NavBar";
-import "./styles.css";
+import { NavBar } from "../Commons/NavBar";
+import "../styles.css";
 export const DondeEstamos = () => {
   return (
     <>
-      <NavBar />
       <div className="Donde">
         <h3>Donde estamos</h3>
       </div>

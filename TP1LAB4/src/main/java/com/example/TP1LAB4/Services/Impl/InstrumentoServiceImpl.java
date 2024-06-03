@@ -1,8 +1,10 @@
-package com.example.TP1LAB4.Services;
+package com.example.TP1LAB4.Services.Impl;
 
 import com.example.TP1LAB4.Entities.Instrumento;
 import com.example.TP1LAB4.Repositories.BaseRepository;
 import com.example.TP1LAB4.Repositories.InstrumentoRepository;
+import com.example.TP1LAB4.Services.Impl.BaseServiceImpl;
+import com.example.TP1LAB4.Services.InstrumentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

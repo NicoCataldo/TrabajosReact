@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { NavBar } from "./NavBar";
+
 import { useParams } from "react-router-dom";
-import { getOneInstrumento } from "../../Servicios/FuncionesApi";
-import Instrumento from "../../Entidades/Instrumento";
-import "./styles.css";
+import { getOneInstrumento } from "../../../Servicios/FuncionesApi";
+import Instrumento from "../../../Entidades/Instrumento";
+import "../styles.css";
 
 export const DetalleInstrumento = () => {
   const { idinstrumento } = useParams();
@@ -24,7 +24,6 @@ export const DetalleInstrumento = () => {
       : `Costo de envio al interior de Argentina $${Instru?.costoEnvio}`;
   return (
     <>
-      <NavBar />
       <div className="card mb-3" style={{ width: "800px", marginTop: "10px" }}>
         <div className="row g-0">
           <div className="col-md-4">

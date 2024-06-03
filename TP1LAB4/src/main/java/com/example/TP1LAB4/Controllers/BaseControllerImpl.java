@@ -1,7 +1,7 @@
 package com.example.TP1LAB4.Controllers;
 
 import com.example.TP1LAB4.Entities.Base;
-import com.example.TP1LAB4.Services.BaseServiceImpl;
+import com.example.TP1LAB4.Services.Impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,14 +1,20 @@
 package com.example.TP1LAB4;
 
 import com.example.TP1LAB4.Entities.Categorias;
+import com.example.TP1LAB4.Entities.DetallePedido;
 import com.example.TP1LAB4.Entities.Instrumento;
+import com.example.TP1LAB4.Entities.Pedido;
 import com.example.TP1LAB4.Repositories.CategoriasRepository;
+import com.example.TP1LAB4.Repositories.DetallePedidoRepository;
 import com.example.TP1LAB4.Repositories.InstrumentoRepository;
+import com.example.TP1LAB4.Repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import java.time.LocalDate;
+
 
 @SpringBootApplication
 public class Tp1Lab4Application {
@@ -16,15 +22,24 @@ public class Tp1Lab4Application {
 	InstrumentoRepository instrumentoRepository;
 	@Autowired
 	CategoriasRepository categoriasRepository;
+
+	@Autowired
+	DetallePedidoRepository detallePedidoRepository;
+	@Autowired
+	PedidoRepository pedidoRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(Tp1Lab4Application.class, args);
 		System.out.println("----------Estoy Funcionando----------");
 	}
 	@Bean
-	CommandLineRunner init(InstrumentoRepository instrumentoRepository, CategoriasRepository categoriasRepository) {
+	CommandLineRunner init(InstrumentoRepository instrumentoRepository, CategoriasRepository categoriasRepository,
+						   DetallePedidoRepository detallePedidoRepository,
+							PedidoRepository pedidoRepository) {
 		return args -> {
 			System.out.println("-----------------ESTOY FUNCIONANDO---------");
-			{/*
+
+			/*
+
 			Categorias categoria1 = Categorias.builder()
 					.denominacion("Cuerda")
 					.build();
@@ -136,7 +151,7 @@ public class Tp1Lab4Application {
 					.costoEnvio("G")
 					.cantidadVendida(5)
 					.categoria(categoria1)
-					.descripcion("Material: Plástico similar a madera. 4 Cuerdas longitud: 60cm, el mejor regalo para usted, su familia y amigos, adecuado para 3-18 años de edad.")
+					.descripcion("Material	: Plástico similar a madera. 4 Cuerdas longitud: 60cm, el mejor regalo para usted, su familia y amigos, adecuado para 3-18 años de edad.")
 					.build();
 			instrumentoRepository.save(instrumento7);
 
@@ -179,13 +194,10 @@ public class Tp1Lab4Application {
 					.build();
 			instrumentoRepository.save(instrumento10);
 
-			*/}
+			*/
 
 
-
-
-
-
+			
 		};
 	}
 	

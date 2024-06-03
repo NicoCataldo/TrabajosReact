@@ -1,7 +1,8 @@
-package com.example.TP1LAB4.Services;
+package com.example.TP1LAB4.Services.Impl;
 
 import com.example.TP1LAB4.Entities.Base;
 import com.example.TP1LAB4.Repositories.BaseRepository;
+import com.example.TP1LAB4.Services.BaseService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;

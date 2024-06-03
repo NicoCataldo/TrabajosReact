@@ -1,9 +1,7 @@
-import { NavBar } from "./NavBar";
-import "./styles.css";
+import "../styles.css";
 export const Home = () => {
   return (
     <>
-      <NavBar />
       <div className="Instrumentos"></div>
       <div>
         <h1>Tienda Hendrix</h1>

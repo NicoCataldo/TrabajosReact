@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
-import Instrumento from "../../Entidades/Instrumento";
-import { getAllInstrumentos } from "../../Servicios/FuncionesApi";
+import Instrumento from "../../../Entidades/Instrumento";
+import { getAllInstrumentos } from "../../../Servicios/FuncionesApi";
+import "../styles.css";
 import ItemInstrumento from "./ItemInstrumento";
-import "./styles.css";
 
 export const Tarjetas = () => {
   const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);
-  {
-    /*Nota: Primero correr Json server con npm run server*/
-  }
+
   const getInstrumentos = async () => {
     const datos: Instrumento[] = await getAllInstrumentos();
     setInstrumentos(datos);
@@ -31,6 +29,7 @@ export const Tarjetas = () => {
           costoEnvio={instru.costoEnvio}
           cantidadVendida={instru.cantidadVendida}
           descripcion={instru.descripcion}
+          InstrumentoObject={instru}
         ></ItemInstrumento>
       ))}
     </>

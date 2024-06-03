@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
-import { NavBar } from "./NavBar";
-import "./styles.css";
-import Instrumento from "../../Entidades/Instrumento";
+import { NavBar } from "../Commons/NavBar";
+import "../styles.css";
+import Instrumento from "../../../Entidades/Instrumento";
 import { useEffect, useState } from "react";
 import {
   getAllCategorias,
   getOneInstrumento,
   saveInstrumento,
   updateInstrumento,
-} from "../../Servicios/FuncionesApi";
-import Categorias from "../../Entidades/Categorias";
+} from "../../../Servicios/FuncionesApi";
+import Categorias from "../../../Entidades/Categorias";
 import { Grilla } from "./Grilla";
 import { useNavigate } from "react-router-dom";
 
@@ -78,7 +78,6 @@ export const Agregar = () => {
 
   return (
     <>
-      <NavBar />
       <div className="Formulario-Instrumento">
         <h3>Cargar un nuevo instrumento</h3>
         <div className="mb-3" style={{ width: "600px" }}>
