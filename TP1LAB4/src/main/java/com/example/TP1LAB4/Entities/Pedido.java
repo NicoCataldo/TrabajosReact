@@ -22,8 +22,4 @@ public class Pedido extends Base{
     private LocalDate fecha;
     private double totalPedido;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<DetallePedido> detalles = new ArrayList<>();
-
 }

@@ -11,6 +11,7 @@ import { Agregar } from "./Componentes/Grilla/Agregar.tsx";
 import { Carrito } from "./Componentes/Productos/Carrito.tsx";
 import { CarritoContextProvider } from "./context/CarritoContext.tsx";
 import { NavBar } from "./Componentes/Commons/NavBar.tsx";
+import { Pedidos } from "./Componentes/Pedidos/Pedidos.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/Grilla" element={<Grilla />} />
           <Route path="/Agregar/:idinstrumento" element={<Agregar />} />
           <Route path="/Carrito" element={<Carrito />}></Route>
+          <Route path="/Pedidos" element={<Pedidos />}></Route>
         </Routes>
       </CarritoContextProvider>
     </BrowserRouter>

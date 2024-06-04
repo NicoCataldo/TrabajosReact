@@ -7,13 +7,16 @@ import { useEffect, useState } from "react";
 import DetallePedido from "../../../Entidades/DetallePedido.ts";
 import {
   getAllInstrumentos,
+  getAllPedidos,
   saveDetallePedido,
   savePedido,
 } from "../../../Servicios/FuncionesApi.ts";
+import "../styles.css";
 
 export const Carrito = () => {
   const { cart, limpiarCarrito } = useCarrito();
   const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);
+  const [pedid, setPedidos] = useState<Pedido[]>([]);
   const [instrumentosCoincidentes, setInstrumentosCoincidentes] = useState<
     Instrumento[]
   >([]);
@@ -23,6 +26,11 @@ export const Carrito = () => {
   const getInstrumentos = async () => {
     const datos: Instrumento[] = await getAllInstrumentos();
     setInstrumentos(datos);
+  };
+
+  const getPedidos = async () => {
+    const datos: Pedido[] = await getAllPedidos();
+    setPedidos(datos);
   };
 
   const Envios = () => {
@@ -63,10 +71,8 @@ export const Carrito = () => {
   const CrearPedidos = () => {
     pedido.fecha = new Date();
     pedido.totalPedido = SacarTotal();
-    detalles.forEach((detal: DetallePedido) => {
-      pedido.detalles.push(detal);
-    });
     console.log(pedido);
+
     EnviarPedido();
   };
 
@@ -77,22 +83,19 @@ export const Carrito = () => {
     if (pedido.id == undefined) {
       return;
     }
-    if (pedido.detalles == undefined) {
-      return;
-    }
     if (pedido.totalPedido == undefined || pedido.totalPedido == 0) {
       return;
     }
     console.log("Pedido enviado");
     alert("Pedido " + pedido.id + " enviado con éxito");
     savePedido(pedido);
-    limpiarCarrito;
+    limpiarCarrito();
   };
 
   function SacarTotal() {
     let resultado: number = 0;
     instrumentosCoincidentes.forEach((instru: Instrumento) => {
-      resultado += instru.precio;
+      resultado += instru.precio * instru.cantidad;
     });
     return resultado;
   }
@@ -110,26 +113,27 @@ export const Carrito = () => {
           display: "flex",
         }}
       >
-        <p style={{ margin: 0 }}>Carrito de compras</p>
-        <Button
-          variant="outlined"
-          size="small"
-          style={{ marginLeft: "auto" }}
-          onClick={limpiarCarrito}
-        >
-          Vaciar carrito
-        </Button>
-        <Button
-          variant="outlined"
-          size="small"
-          style={{ marginLeft: "auto" }}
-          onClick={Envios}
-        >
-          Enviar Pedido
-        </Button>
+        <div className={cart.length > 0 ? "divVisible" : "divInvisible"}>
+          <Button
+            variant="outlined"
+            size="small"
+            style={{ marginLeft: "auto" }}
+            onClick={limpiarCarrito}
+          >
+            Vaciar carrito
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            style={{ marginLeft: "auto" }}
+            onClick={Envios}
+          >
+            Enviar Pedido
+          </Button>
+        </div>
       </div>
       {cart.length === 0 ? (
-        <p>El carrito está vacío</p>
+        <h3>El carrito está vacío</h3>
       ) : (
         cart.map((instru: Instrumento) => (
           <ItemCarrito

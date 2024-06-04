@@ -60,5 +60,12 @@ body {
 .CarritoTitulo{
   margin-top: 40px
 }
+.divVisible{
+  visibility:visible;
+}
+
+.divInvisible{
+  visibility:hidden;
+}
 
                         

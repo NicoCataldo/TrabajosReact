@@ -1,6 +1,7 @@
 import Instrumento from "../Entidades/Instrumento";
 import DetallePedido from "../Entidades/DetallePedido";
 import Pedido from "../Entidades/Pedido";
+import PreferenceMP from "../Entidades/PreferenceMp";
 
 export function getAllInstrumentos(){
     return fetch(`http://localhost:9000/api/v1/Instrumentos`)
@@ -72,6 +73,25 @@ export async function savePedido(data: Pedido): Promise<Pedido> {
     });
     const newData = await response.json();
     return newData as Pedido;
+}
+
+export function getAllPedidos(){
+    return fetch(`http://localhost:9000/api/v1/Pedido`)
+            .then(res=>res.json())
+            .then(json=>json)
+}
+
+export async function createPreferenceMP(pedido?:Pedido){
+    let urlServer = "http://localhost:9000/api/v1/Pedido/create_preference_mp";
+	let method:string = "POST";
+    const response = await fetch(urlServer, {
+	  "method": method,
+	  "body": JSON.stringify(pedido),
+	  "headers": {
+		"Content-Type": 'application/json'
+	  }
+	});
+    return await response.json() as PreferenceMP;   
 }
 
 

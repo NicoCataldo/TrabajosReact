@@ -34,6 +34,11 @@ export const NavBar = () => {
                 Grilla de Productos
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/Pedidos">
+                Pedidos
+              </a>
+            </li>
           </ul>
         </div>
         <div className="d-flex ms-auto position-relative">
