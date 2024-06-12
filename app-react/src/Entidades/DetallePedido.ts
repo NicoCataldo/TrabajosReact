@@ -1,4 +1,4 @@
-import Pedido from "./Pedido";
+
 import Instrumento from "./Instrumento";
 
 export default class DetallePedido{

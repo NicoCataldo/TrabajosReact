@@ -30,6 +30,7 @@ public class Instrumento extends Base{
     private String modelo;
     private String imagen;
     private double precio;
+    private double costo;
     private String costoEnvio;
     private int cantidadVendida;
     private String descripcion;

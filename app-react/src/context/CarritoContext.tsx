@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState, useEffect } from "react";
-import Instrumento from "../../Entidades/Instrumento";
+import Instrumento from "../Entidades/Instrumento";
 
 // Definimos el tipo de dato que se almacenará en el contexto del carrito
 interface CartContextType {

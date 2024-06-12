@@ -1,9 +1,8 @@
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import { createPreferenceMP } from "../../../Servicios/FuncionesApi";
+import { createPreferenceMP } from "../../Servicios/FuncionesApi";
 import { useState } from "react";
-import PreferenceMP from "../../../Entidades/PreferenceMp";
-import { useCarrito } from "../../hooks/useCarrito";
-import DetallePedido from "../../../Entidades/DetallePedido";
+import PreferenceMP from "../../Entidades/PreferenceMp";
+import DetallePedido from "../../Entidades/DetallePedido";
 import { Button } from "react-bootstrap";
 import "../styles.css";
 
@@ -17,6 +16,7 @@ function CheckoutMP({ montoCarrito = 0 }) {
         titulo: "Pedido Buen Sabor",
         fecha: new Date(),
         totalPedido: montoCarrito,
+        detalle: new DetallePedido(),
       });
       console.log("Preference id: " + response.id);
       if (response) setIdPreference(response.id);

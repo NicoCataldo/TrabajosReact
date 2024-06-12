@@ -6,6 +6,7 @@ export default class Pedido{
   titulo: string = "";
   fecha: Date = new Date();
   totalPedido: number = 0;
+  detalle: DetallePedido = new DetallePedido();
     
 
 }

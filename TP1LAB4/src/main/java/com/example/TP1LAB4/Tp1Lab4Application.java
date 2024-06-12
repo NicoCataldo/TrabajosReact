@@ -1,13 +1,7 @@
 package com.example.TP1LAB4;
 
-import com.example.TP1LAB4.Entities.Categorias;
-import com.example.TP1LAB4.Entities.DetallePedido;
-import com.example.TP1LAB4.Entities.Instrumento;
-import com.example.TP1LAB4.Entities.Pedido;
-import com.example.TP1LAB4.Repositories.CategoriasRepository;
-import com.example.TP1LAB4.Repositories.DetallePedidoRepository;
-import com.example.TP1LAB4.Repositories.InstrumentoRepository;
-import com.example.TP1LAB4.Repositories.PedidoRepository;
+import com.example.TP1LAB4.Entities.*;
+import com.example.TP1LAB4.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +21,8 @@ public class Tp1Lab4Application {
 	DetallePedidoRepository detallePedidoRepository;
 	@Autowired
 	PedidoRepository pedidoRepository;
+	@Autowired
+	UsuarioRepository usuarioRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(Tp1Lab4Application.class, args);
 		System.out.println("----------Estoy Funcionando----------");
@@ -34,12 +30,9 @@ public class Tp1Lab4Application {
 	@Bean
 	CommandLineRunner init(InstrumentoRepository instrumentoRepository, CategoriasRepository categoriasRepository,
 						   DetallePedidoRepository detallePedidoRepository,
-							PedidoRepository pedidoRepository) {
+							PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository) {
 		return args -> {
 			System.out.println("-----------------ESTOY FUNCIONANDO---------");
-
-			/*
-
 			Categorias categoria1 = Categorias.builder()
 					.denominacion("Cuerda")
 					.build();
@@ -69,6 +62,7 @@ public class Tp1Lab4Application {
 					.modelo("M20")
 					.imagen("https://www.heavenimagenes.com/heavencommerce/c98a269a-2842-4da0-a6e5-e0e155d29966/images/v2/STAGG/1808291259027891_03_medium.jpg")
 					.precio(2450f)
+					.costo(100f)
 					.costoEnvio("G")
 					.cantidadVendida(28)
 					.descripcion("Estas viendo una excelente mandolina de la marca Stagg.")
@@ -82,6 +76,7 @@ public class Tp1Lab4Application {
 					.modelo("32 sonajas")
 					.imagen("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5w1VD4sisWr3JQII2_p_a1cuhkFXzGNPpdmrB5s5-7Q&s")
 					.precio(325f)
+					.costo(200f)
 					.costoEnvio("150")
 					.cantidadVendida(10)
 					.descripcion(" Pandereta - 32 sonajas metálicas. Más de 8 años vendiendo con 100 % de calificaciones POSITIVAS y clientes satisfechos !! ")
@@ -95,6 +90,7 @@ public class Tp1Lab4Application {
 					.modelo("24")
 					.imagen("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT76yg8JWkcQBshWoVnJZwVmUGXq-5gf5o3MHwrlqgUMw&s")
 					.precio(260f)
+					.costo(100f)
 					.costoEnvio("250")
 					.cantidadVendida(3)
 					.descripcion("Triangulo Musical de 24 Centímetros De Acero.")
@@ -108,6 +104,7 @@ public class Tp1Lab4Application {
 					.modelo("LATIN")
 					.imagen("https://http2.mlstatic.com/D_NQ_NP_670997-MLA31575604825_072019-O.webp")
 					.precio(2250f)
+					.costo(1000f)
 					.costoEnvio("G")
 					.cantidadVendida(2)
 					.descripcion("BARCHIME CORTINA MUSICAL DE 25 BARRAS LATIN CUSTOM. Emitimos factura A y B")
@@ -121,6 +118,7 @@ public class Tp1Lab4Application {
 					.modelo("Cuentas de madera")
 					.imagen("https://galeriaartesanalpr.com/cdn/shop/files/SHEKERE800LOGO1_b57b606d-b046-49c2-83cf-1819de952cec_600x.jpg?v=1693183399")
 					.precio(850f)
+					.costo(500f)
 					.costoEnvio("300")
 					.categoria(categoria3)
 					.cantidadVendida(5)
@@ -134,6 +132,7 @@ public class Tp1Lab4Application {
 					.modelo("Stratus")
 					.imagen("https://http2.mlstatic.com/D_NQ_NP_741625-MLA25468412771_032017-O.webp")
 					.precio(17000f)
+					.costo(10000f)
 					.costoEnvio("2000")
 					.cantidadVendida(0)
 					.categoria(categoria4)
@@ -148,6 +147,7 @@ public class Tp1Lab4Application {
 					.modelo("UKELELE")
 					.imagen("https://http2.mlstatic.com/D_NQ_NP_602949-MLA32297056646_092019-O.webp")
 					.precio(500f)
+					.costo(100f)
 					.costoEnvio("G")
 					.cantidadVendida(5)
 					.categoria(categoria1)
@@ -161,8 +161,9 @@ public class Tp1Lab4Application {
 					.modelo("T01")
 					.imagen("https://http2.mlstatic.com/D_NQ_NP_851863-MLU71029857717_082023-O.webp")
 					.precio(2250f)
+					.costo(1200f)
 					.costoEnvio("G")
-					.cantidadVendida(1375)
+					.cantidadVendida(13)
 					.categoria(categoria5)
 					.descripcion("Organo Electrónico GADNIC T01. Display de Led. 54 Teclas. 100 Timbres / 100 Ritmos. 4 1/2 octavas. 8 Percusiones. 8 Canciones de muestra. Grabación y reproducción. Entrada para Micrófono.")
 					.build();
@@ -174,6 +175,7 @@ public class Tp1Lab4Application {
 					.modelo("LB17")
 					.imagen("https://http2.mlstatic.com/D_NQ_NP_773874-MLA52856983256_122022-O.webp")
 					.precio(2700f)
+					.costo(1500f)
 					.costoEnvio("300")
 					.categoria(categoria3)
 					.cantidadVendida(15)
@@ -187,14 +189,28 @@ public class Tp1Lab4Application {
 					.modelo("Infantil")
 					.imagen("https://http2.mlstatic.com/D_NQ_NP_643960-MLA27368744727_052018-O.webp")
 					.precio(850)
+					.costo(500f)
 					.costoEnvio("250")
-					.cantidadVendida(380)
+					.cantidadVendida(17)
 					.categoria(categoria3)
 					.descripcion("DESCRIPCIÓN: DE 1 A 3 AÑOS. EL SET INCLUYE 5 TAMBORES, PALILLOS Y EL PLATILLO TAL CUAL LAS FOTOS. SONIDOS REALISTAS Y FÁCIL DE MONTAR. MEDIDAS: 40X20X46 CM")
 					.build();
 			instrumentoRepository.save(instrumento10);
 
-			*/
+			Usuario usuario1 = Usuario.builder()
+					.usuario("nico")
+					.clave("123456")
+					.rol(Roles.ADMIN)
+					.build();
+			usuarioRepository.save(usuario1);
+
+			Usuario usuario2 = Usuario.builder()
+					.usuario("visitante")
+					.rol(Roles.USER)
+					.clave("123456")
+					.build();
+			usuarioRepository.save(usuario2);
+
 
 
 			

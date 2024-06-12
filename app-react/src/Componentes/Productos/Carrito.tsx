@@ -1,64 +1,26 @@
 import { useCarrito } from "../../hooks/useCarrito.tsx";
-import Instrumento from "../../../Entidades/Instrumento";
+import Instrumento from "../../Entidades/Instrumento.ts";
 import ItemCarrito from "./ItemCarrito.tsx";
 import { Button } from "@mui/material";
-import Pedido from "../../../Entidades/Pedido.ts";
-import { useEffect, useState } from "react";
-import DetallePedido from "../../../Entidades/DetallePedido.ts";
-import {
-  getAllInstrumentos,
-  getAllPedidos,
-  saveDetallePedido,
-  savePedido,
-} from "../../../Servicios/FuncionesApi.ts";
+import Pedido from "../../Entidades/Pedido.ts";
+import DetallePedido from "../../Entidades/DetallePedido.ts";
+import { saveDetallePedido, savePedido } from "../../Servicios/FuncionesApi.ts";
 import "../styles.css";
+import { NavBar } from "../Commons/NavBar.tsx";
 
 export const Carrito = () => {
   const { cart, limpiarCarrito } = useCarrito();
-  const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);
-  const [pedid, setPedidos] = useState<Pedido[]>([]);
-  const [instrumentosCoincidentes, setInstrumentosCoincidentes] = useState<
-    Instrumento[]
-  >([]);
+
   const pedido = new Pedido();
   const detalles: DetallePedido[] = [];
 
-  const getInstrumentos = async () => {
-    const datos: Instrumento[] = await getAllInstrumentos();
-    setInstrumentos(datos);
-  };
-
-  const getPedidos = async () => {
-    const datos: Pedido[] = await getAllPedidos();
-    setPedidos(datos);
-  };
-
   const Envios = () => {
-    EncontrarCoincidencias();
     CrearDetalle();
     CrearPedidos();
   };
 
-  const encontrarInstrumentosComunes = (
-    instrumentos: Instrumento[],
-    cart: Instrumento[]
-  ): Instrumento[] => {
-    return cart.filter((instrumento) =>
-      instrumentos.some(
-        (instrumentoItem) => instrumentoItem.id === instrumento.id
-      )
-    );
-  };
-  const EncontrarCoincidencias = () => {
-    const instrumentosCoincidentes = encontrarInstrumentosComunes(
-      instrumentos,
-      cart
-    );
-    setInstrumentosCoincidentes(instrumentosCoincidentes);
-  };
-
   const CrearDetalle = () => {
-    instrumentosCoincidentes.forEach((instrumento: Instrumento) => {
+    cart.forEach((instrumento: Instrumento) => {
       const detalle = new DetallePedido();
       detalle.cantidad = instrumento.cantidad;
       detalle.instrumento = instrumento;
@@ -72,7 +34,9 @@ export const Carrito = () => {
     pedido.fecha = new Date();
     pedido.totalPedido = SacarTotal();
     console.log(pedido);
-
+    detalles.forEach((detal: DetallePedido) => {
+      pedido.detalle = detal;
+    });
     EnviarPedido();
   };
 
@@ -94,18 +58,15 @@ export const Carrito = () => {
 
   function SacarTotal() {
     let resultado: number = 0;
-    instrumentosCoincidentes.forEach((instru: Instrumento) => {
+    cart.forEach((instru: Instrumento) => {
       resultado += instru.precio * instru.cantidad;
     });
     return resultado;
   }
 
-  useEffect(() => {
-    getInstrumentos();
-  }, []);
-
   return (
     <>
+      <NavBar />
       <div
         style={{
           maxHeight: "20px",
@@ -133,7 +94,7 @@ export const Carrito = () => {
         </div>
       </div>
       {cart.length === 0 ? (
-        <h3>El carrito está vacío</h3>
+        <h3 className="LabelCarrito">El carrito está vacío</h3>
       ) : (
         cart.map((instru: Instrumento) => (
           <ItemCarrito

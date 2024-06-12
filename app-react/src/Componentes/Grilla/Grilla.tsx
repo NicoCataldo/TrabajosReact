@@ -1,17 +1,21 @@
 import { SetStateAction, useEffect, useState } from "react";
-import Instrumento from "../../../Entidades/Instrumento";
+import Instrumento from "../../Entidades/Instrumento";
 import {
   deleteInstrumento,
   getAllCategorias,
   getAllInstrumentos,
-} from "../../../Servicios/FuncionesApi";
+} from "../../Servicios/FuncionesApi";
 import { NavBar } from "../Commons/NavBar";
 import "../styles.css";
-import Categorias from "../../../Entidades/Categorias";
+import Categorias from "../../Entidades/Categorias";
+import Usuario from "../../Entidades/Usuario";
+import { Roles } from "../../Entidades/Roles";
 
 export const Grilla = () => {
   const [instrumentos, setInstrumentos] = useState<Instrumento[]>([]);
   const [categorias, setCategorias] = useState<Categorias[]>([]);
+  const [jsonUsuario] = useState<any>(localStorage.getItem("usuario"));
+  const usuarioLogueado: Usuario = JSON.parse(jsonUsuario) as Usuario;
   {
     /*Nota: Primero correr Json server con npm run server*/
   }
@@ -42,6 +46,13 @@ export const Grilla = () => {
     setCategoriaFiltro(e.target.value);
   };
 
+  const generarExcel = () => {
+    window.open(
+      "http://localhost:9000/api/v1/Instrumentos/GenerarExcel",
+      "_blank"
+    );
+  };
+
   const filteredInstrumentos = categoriaFiltro
     ? instrumentos.filter(
         (instrumento) => instrumento.categoria.denominacion === categoriaFiltro
@@ -53,10 +64,18 @@ export const Grilla = () => {
       <NavBar />
       <div className="Busqueda">
         <div className="Boton">
+          <a
+            className="btn btn-primary"
+            onClick={(e) => generarExcel()}
+            style={{ marginRight: "10px" }}
+          >
+            Generar Excel
+          </a>
           <a className="btn btn-primary" href={`/Agregar/0`}>
             Agregar
           </a>
         </div>
+
         <select value={categoriaFiltro} onChange={handleChangeCategoria}>
           <option value="">Todas las categorías</option>
           {/* Aquí deberías generar opciones para cada categoría única de tus instrumentos */}
@@ -108,24 +127,32 @@ export const Grilla = () => {
             <div className="col">{intru.categoria.denominacion}</div>
             <div className="col">{intru.precio}</div>
             <div className="col">{intru.costoEnvio}</div>
-            <div className="col">
-              <a
-                className="btn btn-info"
-                style={{ marginBottom: 10 }}
-                href={`/Agregar/` + intru.id}
-              >
-                Modificar
-              </a>
-            </div>
-            <div className="col">
-              <a
-                className="btn btn-danger"
-                style={{ marginBottom: 10 }}
-                onClick={() => deleteInstru(intru.id)}
-              >
-                Eliminar
-              </a>
-            </div>
+            {usuarioLogueado.rol == Roles.ADMIN ? (
+              <div className="col">
+                <a
+                  className="btn btn-info"
+                  style={{ marginBottom: 10 }}
+                  href={`/Agregar/` + intru.id}
+                >
+                  Modificar
+                </a>
+              </div>
+            ) : (
+              <div className="col"></div>
+            )}
+            {usuarioLogueado.rol == Roles.ADMIN ? (
+              <div className="col">
+                <a
+                  className="btn btn-danger"
+                  style={{ marginBottom: 10 }}
+                  onClick={() => deleteInstru(intru.id)}
+                >
+                  Eliminar
+                </a>
+              </div>
+            ) : (
+              <div className="col"></div>
+            )}
           </div>
         ))}
       </div>

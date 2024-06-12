@@ -30,13 +30,33 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+	runtimeOnly 'com.h2database:h2'
 	//Mercado Pago
 	implementation 'com.mercadopago:sdk-java:2.1.24'
+
+    // PDFs
+	implementation 'com.itextpdf:itext7-core:7.2.2'
+
+
+
 
 
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	manifest {
+		attributes 'BuenSaborApplication': 'com.entidades.buenSabor.BuenSaborApplication'
+	}
+}
+
+tasks.jar {
+	enabled = true
+}
+
+bootJar {
+	enabled=true
 }

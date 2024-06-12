@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
-import { getOneInstrumento } from "../../../Servicios/FuncionesApi";
-import Instrumento from "../../../Entidades/Instrumento";
+import { getOneInstrumento } from "../../Servicios/FuncionesApi";
+import Instrumento from "../../Entidades/Instrumento";
 import "../styles.css";
+import { NavBar } from "../Commons/NavBar";
 
 export const DetalleInstrumento = () => {
   const { idinstrumento } = useParams();
@@ -18,12 +19,17 @@ export const DetalleInstrumento = () => {
     getInstrumento();
   }, []);
 
+  const generarPDF = () => {
+    window.open("http://localhost:9000/api/v1/pdf/" + idinstrumento);
+  };
+
   const text =
     Instru?.costoEnvio === "G"
       ? "Envio gratis a todo el pais"
       : `Costo de envio al interior de Argentina $${Instru?.costoEnvio}`;
   return (
     <>
+      <NavBar />
       <div className="card mb-3" style={{ width: "800px", marginTop: "10px" }}>
         <div className="row g-0">
           <div className="col-md-4">
@@ -51,6 +57,13 @@ export const DetalleInstrumento = () => {
               </p>
               <a href="" className="btn btn-primary">
                 Agregar al carrito
+              </a>
+              <a
+                onClick={(e) => generarPDF()}
+                className="btn btn-primary"
+                style={{ marginLeft: "10px" }}
+              >
+                Generar PDF
               </a>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import DetallePedido from "../../../Entidades/DetallePedido";
+import DetallePedido from "../../Entidades/DetallePedido";
 import CheckoutMP from "../MercadoPago/CheckoutMp";
 
 type PedidosParams = {
@@ -6,6 +6,7 @@ type PedidosParams = {
   titulo: string;
   fecha: Date;
   totalPedido: number;
+  detalle: DetallePedido;
 };
 
 export const ItemPedidos = (args: PedidosParams) => {
@@ -22,6 +23,9 @@ export const ItemPedidos = (args: PedidosParams) => {
         <div className="col-md-8">
           <div className="card-body">
             <h5 className="card-title">Pedido con id: {args.id}</h5>
+            <h5 className="card-text">
+              Contenido: {args.detalle.instrumento.instrumento}
+            </h5>
             <h5 className="card-text">Total del pedido: ${args.totalPedido}</h5>
             <CheckoutMP montoCarrito={args.totalPedido}></CheckoutMP>
           </div>

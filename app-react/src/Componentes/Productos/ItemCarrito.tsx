@@ -1,8 +1,8 @@
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useCarrito } from "../../hooks/useCarrito.tsx";
-import Instrumento from "../../../Entidades/Instrumento.ts";
-import { Button } from "@mui/material";
+import Instrumento from "../../Entidades/Instrumento.ts";
+import { NavBar } from "../Commons/NavBar.tsx";
 type InstrumentoParams = {
   id: number;
   instrumento: string;
@@ -23,8 +23,7 @@ function ItemCarrito(args: InstrumentoParams) {
       ? "Envio gratis a todo el pais"
       : `Costo de envio al interior de Argentina $${args.costoEnvio}`;
 
-  const { cart, removeCarrito, addCarrito, limpiarCarrito, removeItemCarrito } =
-    useCarrito();
+  const { cart, removeCarrito, addCarrito, removeItemCarrito } = useCarrito();
 
   const verificaPlatoEnCarrito = (product: Instrumento) => {
     return cart.some((item) => item.id === product.id);
@@ -33,6 +32,7 @@ function ItemCarrito(args: InstrumentoParams) {
   const isPlatoInCarrito = verificaPlatoEnCarrito(args.InstrumentoObject);
   return (
     <>
+      <NavBar />
       <div className="card mb-3" style={{ width: "600px", marginTop: "20px" }}>
         <div className="row g-0">
           <div className="col-md-4">

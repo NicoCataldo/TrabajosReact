@@ -81,6 +81,12 @@ export function getAllPedidos(){
             .then(json=>json)
 }
 
+export function getAllUsuarios(){
+    return fetch(`http://localhost:9000/api/v1/Usuario`)
+            .then(res=>res.json())
+            .then(json=>json)
+}
+
 export async function createPreferenceMP(pedido?:Pedido){
     let urlServer = "http://localhost:9000/api/v1/Pedido/create_preference_mp";
 	let method:string = "POST";
@@ -94,6 +100,33 @@ export async function createPreferenceMP(pedido?:Pedido){
     return await response.json() as PreferenceMP;   
 }
 
+
+export async function getDatosLinea(){
+	const urlServer = 'http://localhost:9000/api/v1/Instrumentos/DataLine';
+	const response = await fetch(urlServer, {
+		method: 'GET',
+        headers: {
+			'Content-type': 'application/json',
+
+		},
+        mode: 'cors'
+	});
+	console.log(response);
+	return await response.json();
+}
+
+export async function getDatosTorta(){
+    const urlServer = 'http://localhost:9000/api/v1/Instrumentos/DataTorta';
+	const response = await fetch(urlServer, {
+		method: 'GET',
+        headers: {
+			'Content-type': 'application/json',
+		},
+        mode: 'cors'
+	});
+	console.log(response);
+	return await response.json();
+}
 
 
 
