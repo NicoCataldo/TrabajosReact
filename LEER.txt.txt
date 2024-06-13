@@ -1,4 +1,0 @@
-Para poder observas los items con normalidad:
-1° Ejecutar la bd "TP1LAB" en intellij el cual guardará los datos en una tabla mysql 
-2° Ejecutar "npm install" para descargar todas las depedencias en react
-3° Ejecutar npm run dev para correr React
