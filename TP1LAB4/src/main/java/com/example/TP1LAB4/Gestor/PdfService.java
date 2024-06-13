@@ -27,6 +27,7 @@ public class PdfService {
 
         PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
 
+
         document.add(new Paragraph("Instrumento: " + instrumento.getInstrumento()).setFont(font));
         document.add(new Paragraph("Marca: " + instrumento.getMarca()).setFont(font));
         document.add(new Paragraph("Modelo: " + instrumento.getModelo()).setFont(font));
@@ -35,7 +36,7 @@ public class PdfService {
         document.add(new Paragraph("Costo de Envío: " + instrumento.getCostoEnvio()).setFont(font));
         document.add(new Paragraph("Cantidad Vendida: " + instrumento.getCantidadVendida()).setFont(font));
         document.add(new Paragraph("Descripción: " + instrumento.getDescripcion()).setFont(font));
-        document.add(new Paragraph("Categoría: " + instrumento.getCategoria()).setFont(font));
+        document.add(new Paragraph("Categoría: " + instrumento.getCategoriaString()).setFont(font));
 
         document.close();
 

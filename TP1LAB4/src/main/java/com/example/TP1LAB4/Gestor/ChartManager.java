@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ChartManager {
-    String urlConexion = "jdbc:mysql://localhost:3306/React";
+    String urlConexion = "jdbc:mysql://localhost:3306/TPReact";
     String usuario = "root";
     String clave = "123456789";
 

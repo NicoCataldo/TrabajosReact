@@ -48,8 +48,7 @@ export const Grilla = () => {
 
   const generarExcel = () => {
     window.open(
-      "http://localhost:9000/api/v1/Instrumentos/GenerarExcel",
-      "_blank"
+      "http://localhost:9000/api/v1/Excel"
     );
   };
 

@@ -24,7 +24,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Table(name = "Instrumento")
-public class Instrumento extends Base{
+public class Instrumento extends Base {
     private String instrumento;
     private String marca;
     private String modelo;
@@ -40,5 +40,14 @@ public class Instrumento extends Base{
     private Categorias categoria;
 
 
+    public String getPrecioString() {
+        return String.valueOf(precio);
+    }
 
+    public String getcostoString() {
+        return String.valueOf(costo);
+    }
+    public String getCategoriaString() {
+        return categoria.getDenominacion();
+    }
 }

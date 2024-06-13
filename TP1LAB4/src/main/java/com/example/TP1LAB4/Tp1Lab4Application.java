@@ -33,6 +33,7 @@ public class Tp1Lab4Application {
 							PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository) {
 		return args -> {
 			System.out.println("-----------------ESTOY FUNCIONANDO---------");
+			/*
 			Categorias categoria1 = Categorias.builder()
 					.denominacion("Cuerda")
 					.build();
@@ -212,7 +213,7 @@ public class Tp1Lab4Application {
 			usuarioRepository.save(usuario2);
 
 
-
+			*/
 			
 		};
 	}
