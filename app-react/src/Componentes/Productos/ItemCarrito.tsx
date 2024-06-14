@@ -37,7 +37,7 @@ function ItemCarrito(args: InstrumentoParams) {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src={args.imagen}
+              src={'../../../public/imagenes/' + args.imagen}
               className="img-fluid rounded-start"
               alt="..."
             ></img>
