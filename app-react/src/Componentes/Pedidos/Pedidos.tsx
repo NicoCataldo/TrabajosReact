@@ -8,6 +8,8 @@ import ExcelOptions from "./ExcelOptions";
 
 export const Pedidos = () => {
   const [pedidos, setPedidos] = useState<Pedido[]>([]);
+  const [fechaDesde, setFechaDesde] = useState("");
+  const [fechaHasta, setFechaHasta] = useState("");
 
   const getPedidos = async () => {
     const datos: Pedido[] = await getAllPedidos();
@@ -19,8 +21,13 @@ export const Pedidos = () => {
   }, []);
 
   const generarExcel = () => {
+    if (!fechaDesde || !fechaHasta) {
+      alert("Por favor, ingrese ambas fechas.");
+      return;
+    }
+
     window.open(
-      "http://localhost:9000/api/v1/excel/pedidos"
+      `http://localhost:9000/api/v1/excel/pedidos?fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}`
     );
   };
 
@@ -30,18 +37,37 @@ export const Pedidos = () => {
       <div className={pedidos.length < 1 ? "divVisible" : "divInvisible"}>
         <h3 className="PedidosTitulo">No tienes pedidos realizados</h3>
       </div>
+      <div className="FechaInputs" style={{color: "white"}}>
+        <label>
+          Fecha Desde:
+          <input
+            type="date"
+            value={fechaDesde}
+            onChange={(e) => setFechaDesde(e.target.value)}
+          />
+        </label>
+        <label>
+          Fecha Hasta:
+          <input
+            type="date"
+            value={fechaHasta}
+            onChange={(e) => setFechaHasta(e.target.value)}
+          />
+        </label>
+      </div>
       <div className="Boton">
-          <a
-            className="btn btn-primary"
-            onClick={(e) => generarExcel()}
-            style={{ marginRight: "10px" }}
-          >
-            Generar Excel
-          </a>  
+        <a
+          className="btn btn-primary"
+          onClick={(e) => generarExcel()}
+          style={{ marginRight: "10px" }}
+        >
+          Generar Excel
+        </a>  
       </div>
       {pedidos.map((ped: Pedido) => (
         ped.activo ? (
           <ItemPedidos
+            key={ped.id}
             id={ped.id}
             fecha={ped.fecha}
             totalPedido={ped.totalPedido}
@@ -50,7 +76,6 @@ export const Pedidos = () => {
           />
         ) : null
       ))}
-
     </>
   );
 };
