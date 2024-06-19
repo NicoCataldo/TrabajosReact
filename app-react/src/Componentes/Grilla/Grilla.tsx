@@ -46,11 +46,6 @@ export const Grilla = () => {
     setCategoriaFiltro(e.target.value);
   };
 
-  const generarExcel = () => {
-    window.open(
-      "http://localhost:9000/api/v1/Excel"
-    );
-  };
 
   const filteredInstrumentos = categoriaFiltro
     ? instrumentos.filter(
@@ -63,13 +58,7 @@ export const Grilla = () => {
       <NavBar />
       <div className="Busqueda">
         <div className="Boton">
-          <a
-            className="btn btn-primary"
-            onClick={(e) => generarExcel()}
-            style={{ marginRight: "10px" }}
-          >
-            Generar Excel
-          </a>
+          
           <a className="btn btn-primary" href={`/Agregar/0`}>
             Agregar
           </a>

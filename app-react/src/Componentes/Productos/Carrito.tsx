@@ -37,6 +37,7 @@ export const Carrito = () => {
     detalles.forEach((detal: DetallePedido) => {
       pedido.detalle = detal;
     });
+    pedido.activo = true;
     EnviarPedido();
   };
 

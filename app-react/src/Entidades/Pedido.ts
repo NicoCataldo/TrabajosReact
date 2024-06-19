@@ -7,6 +7,7 @@ export default class Pedido{
   fecha: Date = new Date();
   totalPedido: number = 0;
   detalle: DetallePedido = new DetallePedido();
+  activo: boolean = false;
     
 
 }

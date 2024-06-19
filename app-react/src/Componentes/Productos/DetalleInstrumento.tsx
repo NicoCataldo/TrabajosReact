@@ -20,7 +20,7 @@ export const DetalleInstrumento = () => {
   }, []);
 
   const generarPDF = () => {
-    window.open("http://localhost:9000/api/v1/pdf/" + idinstrumento);
+    window.open("http://localhost:9000/api/v1/Instrumentos/pdf/" + idinstrumento);
   };
 
   const text =
@@ -34,7 +34,7 @@ export const DetalleInstrumento = () => {
         <div className="row g-0">
           <div className="col-md-4">
             <img
-              src={'../../../public/imagenes/' + Instru?.imagen}
+              src={Instru?.imagen}
               className="img-fluid rounded-start"
               alt="..."
             ></img>

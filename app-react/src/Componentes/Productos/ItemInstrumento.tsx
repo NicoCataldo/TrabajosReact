@@ -34,7 +34,7 @@ function ItemInstrumento(args: InstrumentoParams) {
       <div className="card mb-3" style={{ width: "600px", marginTop: "60px" }}>
         <div className="row g-0">
           <div className="col-md-4">
-          <img src={'../../../public/imagenes/' + args.imagen}
+          <img src={args.imagen}
               className="img-fluid rounded-start"
               alt="..."
             ></img>

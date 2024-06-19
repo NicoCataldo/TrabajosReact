@@ -1,38 +1,44 @@
 import { useEffect, useState } from "react";
 import { NavBar } from "../Commons/NavBar";
-import { getDatosLinea, getDatosTorta } from "../../Servicios/FuncionesApi";
+import { getDatosBar, getDatosPie } from "../../Servicios/FuncionesApi";
 import Chart from "react-google-charts";
 
-export const optionsLine = {
-  title: "Compras Vs Ventas",
-  curveType: "function",
+
+export const optionsBar = {
+  title: "Cantidad de Pedidos por Mes y Año",
   legend: { position: "bottom" },
+  hAxis: { title: "Mes y Año" },
+  vAxis: { title: "Cantidad de Pedidos" },
 };
 
 export const optionsPie = {
-  title: "Cantidad de Articulos Venta",
+  title: "Cantidad de Pedidos por Instrumento",
+  legend: { position: "bottom" },
 };
 
+
 export const ChartsGoogle = () => {
-  const [datosChartLine, setDatosChartLine] = useState<any>();
+
+  const [datosChartBar, setDatosChartBar] = useState<any>();
   const [datosChartPie, setDatosChartPie] = useState<any>();
 
-  const getLineChart = async () => {
-    const datosBackend = await getDatosLinea();
+  const getBarChart = async () => {
+    const datosBackend = await getDatosBar();
     console.log(datosBackend);
-    setDatosChartLine(datosBackend);
+    setDatosChartBar(datosBackend); 
   };
 
   const getPieChart = async () => {
-    const datosBackend = await getDatosTorta();
+    const datosBackend = await getDatosPie();
     console.log(datosBackend);
     setDatosChartPie(datosBackend);
-  };
+};
 
   useEffect(() => {
-    getLineChart();
     getPieChart();
+    getBarChart();
   }, []);
+
   return (
     <>
       <NavBar />
@@ -43,21 +49,23 @@ export const ChartsGoogle = () => {
           alignItems: "center",
         }}
       >
+  
         <Chart
-          chartType="LineChart"
-          data={datosChartLine}
-          options={optionsLine}
-          width="700px"
-          height="700px"
+          chartType="BarChart"
+          data={datosChartBar}
+          options={optionsBar}
+          width="500px"
+          height="400px"
         />
-        <Chart
-          chartType="PieChart"
-          data={datosChartPie}
-          options={optionsPie}
-          width={"700px"}
-          height={"700px"}
-        />
+           <Chart
+                    chartType="PieChart"
+                    data={datosChartPie}
+                    options={optionsPie}
+                    width="500px"
+                    height="400px"
+                />
       </div>
     </>
   );
 };
+
